@@ -16,7 +16,10 @@ document.addEventListener("DOMContentLoaded", function () {
             validPassword = true
         }else{document.getElementById("password-error").innerHTML = "Ingresa tu contraseña"}
         if (validEmail == true && validPassword == true){
-            window.location.href = "e-commerce.html";
+            window.location.href = "portada.html";
         }
     })
 })
+
+/* Luego en clase vimos que puedo usar un mismo booleano con true en lugar de uno para cada input con false.
+En cada if alcanza con cambiar el booleano a false y verificar el booleano compartido como true, para así redirigir. */
