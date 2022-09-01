@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let validPassword = false
 
     document.getElementById("input-ingresar").addEventListener("click", function () {
+        window.localStorage.setItem("usuario-ingresado", email.value);/*  Acá guardo en el LS el usuario del login */
         document.getElementById("email-error").innerHTML = ""
         document.getElementById("password-error").innerHTML = ""
         validEmail = false
