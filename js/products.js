@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
             minPrice = parseInt(minPrice);
         }
         else {
-            minPrice = undefined; /* Reinicio */
+            minPrice = undefined;
         }
 
         if ((maxPrice != undefined) && (maxPrice != "") && (parseInt(maxPrice)) >= 0) {
@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     /* Agrego tres eventos de click con la función de ordenar más el parámetro como criterio */
     document.getElementById("sortAsc").addEventListener("click", function () {
-        ordenarYMostrarProductos(ORDEN_ASC_POR_PRECIO);
+        ordenarYMostrarProductos(ORDEN_ASC_POR_PRECIO); /* Estas constantes están declaradas al principio */
     });
 
     document.getElementById("sortDesc").addEventListener("click", function () {
