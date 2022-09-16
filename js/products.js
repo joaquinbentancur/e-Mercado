@@ -113,6 +113,11 @@ function ordenarProductos(criterio, lista) {
     return result;
 }
 
+/* Traje de categories.js la función que establece la prodID */
+function setProdID(id) {
+    localStorage.setItem("prodID", id); /* Cambio nombre de la key */
+    window.location = "product-info.html" /* Cambio a la nueva locación */
+}
 
 function showProductsList() {
     let htmlContentToAppend = "";
@@ -126,7 +131,7 @@ function showProductsList() {
                 /* Agrego otro condicional que considera lo buscado con el evento de escucha input */
 
                 htmlContentToAppend += `
-            <div onclick="setCatID(${product.id})" class="list-group-item list-group-item-action cursor-active">
+            <div onclick="setProdID(${product.id})" class="list-group-item list-group-item-action cursor-active">
                 <div class="row">
                     <div class="col-3">
                         <img src="${product.image}" alt="${product.description}" class="img-thumbnail">

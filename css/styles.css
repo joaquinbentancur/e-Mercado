@@ -3,6 +3,7 @@
 .container,
 .site-header {
   font-family: 'Raleway', serif !important;
+  font-size: 20px; /* Cambié el tamaño de todas las fuentes */
 }
 
 .jumbotron .display-4 {
@@ -187,4 +188,41 @@ a.custom-card:hover {
 
 .checked {
   color: orange;
+}
+
+/*Estilos para product.html */
+#product-name {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.subtitulo-producto {
+  font-weight: 700;
+  margin: 0;
+}
+
+.div-carrusel-imagenes {
+  display: flex; /* Las pone horizontales */
+  flex-wrap: wrap; /* Evita que el tamaño grande agregue una barra de desplazamiento */
+}
+
+.imagen-producto {
+  height: 250px;
+  border: solid;
+  border-color:rgb(139, 139, 139);
+  border-width: 2px;
+  border-radius: 3px;
+  margin: 10px 20px 10px 0px; /* Valores en sentido horario */
+}
+
+#comment-user {
+  font-weight: 700;
+}
+
+.comment-container{
+  border: solid;
+  border-color:rgba(139, 139, 139, 0.664);
+  border-width: 2px;
+  border-radius: 3px;
+  padding: 15px;
 }
