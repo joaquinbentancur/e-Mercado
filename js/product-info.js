@@ -64,6 +64,11 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+/* Función para ajustar la hora */
+function addZeroLeft(num) {
+  return num < 10 ? `0${num}` : num;
+}
+
 function showProduct(product) {
   let productName = document.getElementById("product-name");
   let productCost = document.getElementById("product-cost");
@@ -103,9 +108,4 @@ function showComments(comments) {
     <p>${comentario.description}</div>`;
   }
   document.getElementById("comentarios").innerHTML = commentsToAppend;
-}
-
-/* Función para ajustar la hora */
-function addZeroLeft(num) {
-  return num < 10 ? `0${num}` : num;
 }
