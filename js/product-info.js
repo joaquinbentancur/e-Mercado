@@ -15,11 +15,53 @@ document.addEventListener("DOMContentLoaded", function () {
   getJSONData(commentsID).then((resultado) => {
     if (resultado.status === "ok") {
       let comments = resultado.data;
-      console.log(comments);
 
       showComments(comments);
     }
   });
+
+  /* Click para nuevo comentario */
+  document
+    .getElementById("send-new-commentary")
+    .addEventListener("click", function () {
+      let newCommentText = document.getElementById("new-commentary-text").value;
+      let valorEstrella = document.getElementById("number-of-stars").value;
+
+      if (newCommentText != "" && valorEstrella != "") {
+        /* Cargo la fecha y la hora del sistema*/
+        let today = new Date();
+
+        let date = today.getDate();
+        let month = today.getMonth() + 1;
+        let year = today.getFullYear();
+
+        let currentDate = `${year}-${month}-${date}`;
+
+        let hours = addZeroLeft(today.getHours());
+        let minutes = addZeroLeft(today.getMinutes());
+        let seconds = addZeroLeft(today.getSeconds());
+
+        let currentTime = `${hours}:${minutes}:${seconds}`;
+
+        let currentDateTime =
+          currentDate + " " + currentTime; /* Variable con fecha y hora */
+
+        let estrellaPositiva = '<span class="fa fa-star checked"></span>';
+        let estrellaVacia = '<span class="fa fa-star"></span>';
+
+        document.getElementById(
+          "comentarios"
+        ).innerHTML += `<div class="comment-container">
+      <p><span id="comment-user">${window.localStorage.getItem(
+        "usuario-ingresado"
+      )}
+      </span> - ${currentDateTime} - ${
+          estrellaPositiva.repeat(valorEstrella) +
+          estrellaVacia.repeat(5 - valorEstrella)
+        }</p>
+    <p>${newCommentText}</div>`;
+      }
+    });
 });
 
 function showProduct(product) {
@@ -61,4 +103,9 @@ function showComments(comments) {
     <p>${comentario.description}</div>`;
   }
   document.getElementById("comentarios").innerHTML = commentsToAppend;
+}
+
+/* Función para ajustar la hora */
+function addZeroLeft(num) {
+  return num < 10 ? `0${num}` : num;
 }
