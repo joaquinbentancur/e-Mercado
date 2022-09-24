@@ -201,7 +201,7 @@ a.custom-card:hover {
   margin: 0;
 }
 
-.div-carrusel-imagenes {
+.div-imagenes-horizontal {
   display: flex; /* Las pone horizontales */
   flex-wrap: wrap; /* Evita que el tamaño grande agregue una barra de desplazamiento */
 }

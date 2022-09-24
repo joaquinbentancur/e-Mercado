@@ -8,7 +8,7 @@
 
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   <link href="css/font-awesome.min.css" rel="stylesheet">
-  
+
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
 </head>
@@ -38,8 +38,10 @@
     </div>
   </nav>
   <main>
-    <div class="container"> <!-- Lugar para mostrar lista -->
-      <h2 class="título-producto" id="product-name">Vuelva al listado de productos y seleccione uno.</h2> <!-- Le di margen con css con su id-->
+    <div class="container">
+      <!-- Lugar para mostrar lista -->
+      <h2 class="título-producto" id="product-name">Vuelva al listado de productos y seleccione uno.</h2>
+      <!-- Le di margen con css con su id-->
       <hr>
       <p class="subtitulo-producto">Precio</p> <!-- Creé una clase para darle css a los subtítulos -->
       <p id="product-cost"></p>
@@ -50,9 +52,27 @@
       <p class="subtitulo-producto">Cantidad de vendidos</p>
       <p id="product-soldCount"></p>
       <p class="subtitulo-producto">Imágenes ilustrativas</p>
-      <div class="div-carrusel-imagenes" id="product-img">
-        <!-- Espacio para imágenes -->
+      <!-- Comienzo carrusel -->
+      <div id="carouselWithIndicators" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators" id="carousel-indicators"> <!-- Identifico indicadores para dinamizar -->
+          <button type="button" data-bs-target="#carouselWithIndicators" data-bs-slide-to="0" class="active"
+            aria-current="true" aria-label="Slide 1"></button>
+        </div>
+        <div class="carousel-inner" id="product-img-crsl">
+          <!-- Imágenes insertadas -->
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselWithIndicators"
+          data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselWithIndicators"
+          data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
       </div>
+      <!-- Fin carrusel -->
       <h2 class="título-producto">Comentarios</h2>
       <div id="comentarios">
       </div>
@@ -70,6 +90,11 @@
       </datalist>
       <br>
       <button class="btn btn-primary mt-2" id="send-new-commentary">Enviar</button> <!-- Botón de envío -->
+      <hr>
+      <h2 class="título-producto">Productos relacionados</h2>
+      <div id="product-related" class="div-imagenes-horizontal">
+        <p>No hay productos relacionados que mostrar.</p> <!-- Productos relacionados -->
+      </div>
     </div>
   </main>
   <footer class="text-muted">
