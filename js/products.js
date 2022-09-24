@@ -10,6 +10,14 @@ let busqueda = undefined; /* Para la barra buscadora */
 
 
 document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("usuario-ingresado").innerHTML = `
+    ${window.localStorage.getItem("usuario-ingresado")}
+    `;
+
+    document.getElementById("log-out").addEventListener("click", function () {
+        localStorage.removeItem("usuario-ingresado")
+    });
+    
     let productCATID = PRODUCTS_URL + window.localStorage.getItem("catID") + EXT_TYPE;
     /* Declaré esta variable para concatenar el json con el catID del local storage */
     getJSONData(productCATID).then(resultado => {

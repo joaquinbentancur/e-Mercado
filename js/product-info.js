@@ -1,4 +1,12 @@
 document.addEventListener("DOMContentLoaded", function () {
+  document.getElementById("usuario-ingresado").innerHTML = `
+    ${window.localStorage.getItem("usuario-ingresado")}
+    `;
+
+    document.getElementById("log-out").addEventListener("click", function () {
+        localStorage.removeItem("usuario-ingresado")
+    });
+
   let productID = PRODUCT_INFO_URL + window.localStorage.getItem("prodID") + EXT_TYPE;
   let commentsID = PRODUCT_INFO_COMMENTS_URL + window.localStorage.getItem("prodID") + EXT_TYPE;
   getJSONData(productID).then((resultado) => {
@@ -79,7 +87,7 @@ function showProduct(product) {
     /* Hago el indicador adaptativo a la cantidad */
     crslIndicators.innerHTML += `
     <button type="button" data-bs-target="#carouselWithIndicators" data-bs-slide-to="${i}" 
-    aria-label="Slide ${i+1}"></button>`;
+    aria-label="Slide ${i + 1}"></button>`;
     /* Agrego las otras imágenes a mostrar */
     productImg.innerHTML += `<div class="carousel-item">
     <img src="${imagen}" class="d-block w-100" alt="${product.name}">
@@ -108,7 +116,7 @@ function showComments(comments) {
   let commentsToAppend = "";
   let estrellaPositiva = '<span class="fa fa-star checked"></span>';
   let estrellaVacia = '<span class="fa fa-star"></span>';
-  
+
   for (let i = 0; i < comments.length; i++) {
     let comentario = comments[i];
     commentsToAppend += `<div class="comment-container">
