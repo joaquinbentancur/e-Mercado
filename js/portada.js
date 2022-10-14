@@ -11,11 +11,5 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.setItem("catID", 103);
         window.location = "products.html"
     });
-    document.getElementById("usuario-ingresado").innerHTML = `
-    ${window.localStorage.getItem("usuario-ingresado")}
-    `;/* Inserto el HTML recuperando el usuario del local storage. */
-
-    document.getElementById("log-out").addEventListener("click", function () {
-        localStorage.removeItem("usuario-ingresado")
-    });
+    userDropbarMenu();
 });

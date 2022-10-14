@@ -41,3 +41,13 @@ let getJSONData = function (url) {
       return result;
     });
 };
+
+function userDropbarMenu(){ /* Defino función que muestra menú desplegable desde el usuario */
+  document.getElementById("usuario-ingresado").innerHTML = `
+  ${window.localStorage.getItem("usuario-ingresado")}
+  `;
+
+  document.getElementById("log-out").addEventListener("click", function () {
+      localStorage.removeItem("usuario-ingresado")
+  });
+}

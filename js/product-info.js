@@ -1,11 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  document.getElementById("usuario-ingresado").innerHTML = `
-    ${window.localStorage.getItem("usuario-ingresado")}
-    `;
-
-    document.getElementById("log-out").addEventListener("click", function () {
-        localStorage.removeItem("usuario-ingresado")
-    });
+  userDropbarMenu();
 
   let productID = PRODUCT_INFO_URL + window.localStorage.getItem("prodID") + EXT_TYPE;
   let commentsID = PRODUCT_INFO_COMMENTS_URL + window.localStorage.getItem("prodID") + EXT_TYPE;
