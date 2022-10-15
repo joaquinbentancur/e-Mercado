@@ -2,7 +2,7 @@ let cartData = [];
 
 document.addEventListener("DOMContentLoaded", function () {
   userDropbarMenu();
-  
+
   let userCart = CART_INFO_URL + "25801" + EXT_TYPE
 
   getJSONData(userCart).then((resultado) => {
@@ -33,7 +33,7 @@ function showCart(cartData) {
             <p>${prodCarrito.currency} ${prodCarrito.unitCost}</p>
           </div>
           <div class="col">
-            <input onchange="changeCount(${prodCarrito.id}, ${i})" id="${prodCarrito.id}q" type="number" min=1 value="${prodCarrito.count}" class="cart-qty-input">
+            <input onchange="changeCount(${prodCarrito.id}, ${i})" id="${prodCarrito.id}" type="number" min=1 value="${prodCarrito.count}" class="cart-qty-input">
           </div>
           <div class="col fw-bold">
             <p>${prodCarrito.currency} ${((prodCarrito.unitCost) * (prodCarrito.count))}</p>
@@ -43,11 +43,12 @@ function showCart(cartData) {
 }
 
 function changeCount(prodId, prodPosition) {
-  let idQ = prodId + "q";
-  let inputQ = document.getElementById(idQ).value
-  if (inputQ >= 1){ /* Mínimo de 1 o vuelve al último value */
+  let inputQ = document.getElementById(prodId).value
+  if (inputQ >= 1) { /* Mínimo de 1 o vuelve al último value */
     cartData[prodPosition].count = inputQ;
-  }  
-  
+  } else {
+    cartData[prodPosition].count = 1;
+  }
+
   showCart(cartData)
 }
