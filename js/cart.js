@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", function () {
   getJSONData(userCart).then((resultado) => {
     if (resultado.status === "ok") {
       cartData = resultado.data.articles;
-      console.log(cartData);
 
       showCart(cartData);
     }
@@ -44,9 +43,9 @@ function showCart(cartData) {
 
 function changeCount(prodId, prodPosition) {
   let inputQ = document.getElementById(prodId).value
-  if (inputQ >= 1) { /* Mínimo de 1 o vuelve al último value */
+  if (inputQ >= 1) { /* Mínimo de 1 */
     cartData[prodPosition].count = inputQ;
-  } else {
+  } else { /* O pasa a 1 */
     cartData[prodPosition].count = 1;
   }
 
