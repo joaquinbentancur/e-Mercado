@@ -30,12 +30,15 @@
             <a class="nav-link" href="sell.html">Vender</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="usuario-ingresado" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="usuario-ingresado" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
             </a>
             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
               <li><a class="dropdown-item" href="cart.html">Mi carrito</a></li>
               <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
-              <li><hr class="dropdown-divider"></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
               <li><a id="log-out" class="dropdown-item" href="index.html">Cerrar sesión</a></li>
             </ul>
           </li>
@@ -45,8 +48,67 @@
   </nav>
   <main>
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+      <!-- Contenido página -->
+      <div>
+        <h2 class="text-center mt-5">Carrito de compras</h2>
+        <div>
+          <h4>Artículos a comprar</h4>
+          <div class="row">
+            <div class="col">
+              <!-- En blanco, con imágenes en fila debajo -->
+            </div>
+            <div class="col">
+              <p class="fw-bold">Nombre</p>
+            </div>
+            <div class="col">
+              <p class="fw-bold">Costo</p>
+            </div>
+            <div class="col">
+              <p class="fw-bold">Cantidad</p>
+            </div>
+            <div class="col">
+              <p class="fw-bold">Subtotal</p>
+            </div>
+            <hr>
+          </div>
+          <div class="row" id="listadoCarrito">
+            <!-- Listado de artículos -->
+          </div>
+        </div>
+        <div>
+          <hr>
+          <form>
+            <div class="mt-4">
+              <h4>Tipo de envío</h4>
+              <div>
+                <input type="radio" name="tipo-de-envio" id="envioPremium" value="15">
+                <label for="envioPremium">Premium de 2 a 5 días (15%)</label><br>
+                <input type="radio" name="tipo-de-envio" id="envioExpress" value="7">
+                <label for="envioExpress">Express de 5 a 8 días (7%)</label><br>
+                <input type="radio" name="tipo-de-envio" id="envioStandard" value="5">
+                <label for="envioStandard">Standard de 12 a 15 días (5%)</label>
+              </div>
+            </div>
+            <div class="mt-4">
+              <h4>Dirección de envío</h4>
+              <div class="d-flex flex-wrap">
+                <div class="col-6 mb-3">
+                  <p>Calle</p>
+                  <input type="text" class="cart-adress-input">
+                </div>
+                <div class="col-6 mb-3">
+                  <p>Número</p>
+                  <input type="text" class="cart-adress-input">
+                </div>
+                <div class="col-6 mb-3">
+                  <p>Esquina</p>
+                  <input type="text" class="cart-adress-input">
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+
       </div>
     </div>
   </main>
