@@ -12,6 +12,41 @@
 </head>
 
 <body>
+  <div class="modal" tabindex="-1">
+    <!-- Modal -->
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Forma de pago</h5>
+        </div>
+        <div class="modal-body">
+          <input type="radio" id="pagoTarj" name="forma-de-pago" value="credito">
+          <label for="pagoTarj">Tarjeta de crédito</label>
+          <hr>
+          <div>
+            <p>Número de tarjeta</p>
+            <input type="text" id="numTarj"></input>
+            <p>Código de seg.</p>
+            <input type="text" id="codSeg"></input>
+            <p>Vencimiento (MM/AA)</p>
+            <input type="text" id="vencTarj"></input>
+          </div>
+
+          <input type="radio" id="pagoBanco" name="forma-de-pago" value="banco">
+          <label for="pagoBanco">Transferencia bancaria</label>
+          <hr>
+          <div>
+            <p>Número de cuenta</p>
+            <input type="text" id="numCuenta"></input>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -52,7 +87,7 @@
       <div>
         <h2 class="text-center mt-5">Carrito de compras</h2>
         <div>
-          <h4>Artículos a comprar</h4>
+          <h3>Artículos a comprar</h3>
           <div class="row">
             <div class="col">
               <!-- En blanco, con imágenes en fila debajo -->
@@ -79,8 +114,8 @@
         <div>
           <hr>
           <form>
-            <div class="mt-4">
-              <h4>Tipo de envío</h4>
+            <div class="mt-4 mb-4">
+              <h3>Tipo de envío</h3>
               <div>
                 <input type="radio" name="tipo-de-envio" id="envioPremium" value="15">
                 <label for="envioPremium">Premium de 2 a 5 días (15%)</label><br>
@@ -90,8 +125,9 @@
                 <label for="envioStandard">Standard de 12 a 15 días (5%)</label>
               </div>
             </div>
-            <div class="mt-4">
-              <h4>Dirección de envío</h4>
+            <hr>
+            <div class="mt-4 mb-4">
+              <h3>Dirección de envío</h3>
               <div class="d-flex flex-wrap">
                 <div class="col-6 mb-3">
                   <p>Calle</p>
@@ -110,7 +146,47 @@
             <button class="btn btn-primary" disabled>Confirmar</button>
           </form>
         </div>
-
+        <hr>
+        <div class="mt-4 mb-4">
+          <h3>Costos</h3>
+          <div>
+            <ul class="list-group">
+              <li class="list-group-item">
+                <div class="d-flex justify-content-between">
+                  <h4>Subtotal</h4>
+                  <h4 id="subtotal">USD 0</h4>
+                </div>
+                <p>Costo unitario del producto por unidad</p>
+              </li>
+              <li class="list-group-item">
+                <div class="d-flex justify-content-between">
+                  <h4>Costo de envío</h4>
+                  <h4 id="costoEnvio">USD 0</h4>
+                </div>
+                <p>Según tipo de envío</p>
+              </li>
+              <li class="list-group-item">
+                <div class="d-flex justify-content-between">
+                  <h4>Total</h4>
+                  <h4 id="costoFinal">USD 0</h4>
+                </div>
+                <p>Costo unitario del producto por unidad</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <hr>
+        <div class="mt-4 mb-4">
+          <h3>Forma de pago</h3>
+          <div>
+            <h5 id="formaPago">No ha seleccionado. Seleccionar !!!!!!!!!!!!!!!!! MODAL</h5>
+          </div>
+        </div>
+        <div class="mt-4 mb-4">
+          <div class="d-grid gap-2"> <!-- Debería estirar el botón, pero no lo hace -->
+            <button class="btn btn-primary" type="submit">Finalizar compra (INHABILITAR SIN TIPO DE ENVÍO)</button>
+          </div>
+        </div>
       </div>
     </div>
   </main>
