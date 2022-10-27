@@ -5,9 +5,11 @@ document.addEventListener("DOMContentLoaded", function () {
   let commentsID = PRODUCT_INFO_COMMENTS_URL + window.localStorage.getItem("prodID") + EXT_TYPE;
   getJSONData(productID).then((resultado) => {
     if (resultado.status === "ok") {
-      let product = resultado.data;
+      let productInfo = resultado.data;
 
-      showProduct(product);
+      showProduct(productInfo);
+      
+      addToCart(productInfo);
     }
   });
   getJSONData(commentsID).then((resultado) => {
@@ -51,6 +53,51 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+
+
+function addToCart(productInfo) {
+  let currentProd = { /* Armo el objeto con la inf. del producto para agregarlo */
+        id: productInfo.id,
+        name: productInfo.name,
+        count: 1, /* Para llevar una cantidad mínima*/
+        unitCost: productInfo.cost,
+        currency: productInfo.currency,
+        image: productInfo.images[0]
+      }
+
+  carritoLS = JSON.parse((window.localStorage.getItem("carritoLS"))); /* Bajo carritoLS con objetos para agrandarlo*/
+
+  console.log(carritoLS);
+  
+  document.getElementById("boton-comprar").addEventListener("click", function () {
+    let prodToCheck = carritoLS.find(prodToCheck => { /* Es como un for, pero toma la primer coincidencia */
+      return prodToCheck.id == currentProd.id; /* Queda undefined o toma su forma */
+    })
+
+    if (prodToCheck == undefined){
+      carritoLS.push(currentProd); /* Lo agrega por no existir */
+    }else{
+      prodToCheck.count += 1; /* Como sabe cuál es, le suma 1 al count */
+    }
+    console.log(carritoLS);
+    window.localStorage.setItem("carritoLS", JSON.stringify(carritoLS));
+    window.location.href = "cart.html"
+  })
+
+  document.getElementById("boton-agregar").addEventListener("click", function () {
+    let prodToCheck = carritoLS.find(prodToCheck => {
+      return prodToCheck.id == currentProd.id;
+    })
+
+    if (prodToCheck == undefined){
+      carritoLS.push(currentProd);
+    }else{
+      prodToCheck.count += 1;
+    }
+    console.log(carritoLS);
+    window.localStorage.setItem("carritoLS", JSON.stringify(carritoLS));
+  })
+}
 
 /* Función para ajustar la hora */
 function addZeroLeft(num) {

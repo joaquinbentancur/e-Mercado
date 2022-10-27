@@ -238,3 +238,11 @@ a.custom-card:hover {
   border-radius: 4px;
   border-color: #b3b3b3;
 }
+
+.btn-cart{
+  text-align: right;
+}
+
+.pointer{
+  cursor: pointer;
+}
