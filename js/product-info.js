@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
       let productInfo = resultado.data;
 
       showProduct(productInfo);
-      
+
       addToCart(productInfo);
     }
   });
@@ -57,26 +57,32 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function addToCart(productInfo) {
   let currentProd = { /* Armo el objeto con la inf. del producto para agregarlo */
-        id: productInfo.id,
-        name: productInfo.name,
-        count: 1, /* Para llevar una cantidad mínima*/
-        unitCost: productInfo.cost,
-        currency: productInfo.currency,
-        image: productInfo.images[0]
-      }
+    id: productInfo.id,
+    name: productInfo.name,
+    count: 1, /* Para llevar una cantidad mínima*/
+    unitCost: productInfo.cost,
+    currency: productInfo.currency,
+    image: productInfo.images[0]
+  }
 
   carritoLS = JSON.parse((window.localStorage.getItem("carritoLS"))); /* Bajo carritoLS con objetos para agrandarlo*/
 
   console.log(carritoLS);
+
+  //let prodToCheck = carritoLS.find(prodToCheck => { /* Es como un for, pero toma la primer coincidencia */
+    //return prodToCheck.id == currentProd.id; }) /* Queda undefined o toma su forma */
+
+  //if (prodToCheck.id == currentProd.id) {
+    //cambiarBotones(); } /* Debo convertir esto en función si quiero que chequee antes */
   
   document.getElementById("boton-comprar").addEventListener("click", function () {
     let prodToCheck = carritoLS.find(prodToCheck => { /* Es como un for, pero toma la primer coincidencia */
       return prodToCheck.id == currentProd.id; /* Queda undefined o toma su forma */
     })
 
-    if (prodToCheck == undefined){
+    if (prodToCheck == undefined) {
       carritoLS.push(currentProd); /* Lo agrega por no existir */
-    }else{
+    } else {
       prodToCheck.count += 1; /* Como sabe cuál es, le suma 1 al count */
     }
     console.log(carritoLS);
@@ -89,16 +95,22 @@ function addToCart(productInfo) {
       return prodToCheck.id == currentProd.id;
     })
 
-    if (prodToCheck == undefined){
+    if (prodToCheck == undefined) {
       carritoLS.push(currentProd);
-    }else{
+    } else {
       prodToCheck.count += 1;
     }
-    console.log(carritoLS);
     window.localStorage.setItem("carritoLS", JSON.stringify(carritoLS));
+    document.getElementById("success-alert").classList.remove("d-none");
+    cambiarBotones();
   })
 }
 
+function cambiarBotones() {
+  document.getElementById("msjYaAgregado").classList.remove("d-none");
+  document.getElementById("boton-agregar").setAttribute("disabled", "");
+  document.getElementById("boton-comprar").setAttribute("disabled", "");
+}
 /* Función para ajustar la hora */
 function addZeroLeft(num) {
   return num < 10 ? `0${num}` : num;

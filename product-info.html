@@ -14,6 +14,11 @@
 </head>
 
 <body>
+  <!-- Alerta de producto agregado al carrito -->
+  <div class="alert alert-success alert-dismissible show d-none" id="success-alert" role="alert">
+    ¡Se ha agregado al carrito!
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -54,9 +59,14 @@
       <h2 class="título-producto" id="product-name">Vuelva al listado de productos y seleccione uno.</h2>
       <!-- Le di margen con css con su id-->
       <hr>
-      <div class="btn-cart">
-        <button id="boton-agregar" class="btn btn-primary">Agregar al carrito</button> <!-- Botón de agregar al carrito -->
-        <button id="boton-comprar" class="btn btn-info text-light">Comprar</button> <!-- Botón de agregar e ir al carrito -->
+      <div class="btn-cart flex-end">
+        <a id="msjYaAgregado" class="btn d-none" href="cart.html">
+          ¡Este producto ya está en tu carrito!
+        </a>
+        <button id="boton-agregar" class="btn btn-primary">Agregar al carrito</button>
+        <!-- Botón de agregar al carrito -->
+        <button id="boton-comprar" class="btn btn-info text-light">Comprar</button>
+        <!-- Botón de agregar e ir al carrito -->
       </div>
       <p class="subtitulo-producto">Precio</p> <!-- Creé una clase para darle css a los subtítulos -->
       <p id="product-cost"></p>

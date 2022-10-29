@@ -12,41 +12,6 @@
 </head>
 
 <body>
-  <div class="modal" tabindex="-1">
-    <!-- Modal -->
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Forma de pago</h5>
-        </div>
-        <div class="modal-body">
-          <input type="radio" id="pagoTarj" name="forma-de-pago" value="credito">
-          <label for="pagoTarj">Tarjeta de crédito</label>
-          <hr>
-          <div>
-            <p>Número de tarjeta</p>
-            <input type="text" id="numTarj"></input>
-            <p>Código de seg.</p>
-            <input type="text" id="codSeg"></input>
-            <p>Vencimiento (MM/AA)</p>
-            <input type="text" id="vencTarj"></input>
-          </div>
-
-          <input type="radio" id="pagoBanco" name="forma-de-pago" value="banco">
-          <label for="pagoBanco">Transferencia bancaria</label>
-          <hr>
-          <div>
-            <p>Número de cuenta</p>
-            <input type="text" id="numCuenta"></input>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
     <div class="container">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -113,15 +78,15 @@
         </div>
         <div>
           <hr>
-          <form>
+          <form id="form-compra">
             <div class="mt-4 mb-4">
               <h3>Tipo de envío</h3>
-              <div>
-                <input type="radio" name="tipo-de-envio" id="envioPremium" value="15">
+              <div id="tipo-de-envio">
+                <input type="radio" name="tipo-de-envio" id="envioPremium" value="0.15" required>
                 <label for="envioPremium">Premium de 2 a 5 días (15%)</label><br>
-                <input type="radio" name="tipo-de-envio" id="envioExpress" value="7">
+                <input type="radio" name="tipo-de-envio" id="envioExpress" value="0.07" required>
                 <label for="envioExpress">Express de 5 a 8 días (7%)</label><br>
-                <input type="radio" name="tipo-de-envio" id="envioStandard" value="5">
+                <input type="radio" name="tipo-de-envio" id="envioStandard" value="0.05" required>
                 <label for="envioStandard">Standard de 12 a 15 días (5%)</label>
               </div>
             </div>
@@ -131,20 +96,19 @@
               <div class="d-flex flex-wrap">
                 <div class="col-6 mb-3">
                   <p>Calle</p>
-                  <input type="text" class="cart-adress-input">
+                  <input type="text" class="cart-adress-input" required>
                 </div>
                 <div class="col-6 mb-3">
                   <p>Número</p>
-                  <input type="text" class="cart-adress-input">
+                  <input type="text" class="cart-adress-input" required>
                 </div>
                 <div class="col-6 mb-3">
                   <p>Esquina</p>
-                  <input type="text" class="cart-adress-input">
+                  <input type="text" class="cart-adress-input" required>
                 </div>
               </div>
             </div>
-            <button class="btn btn-primary" disabled>Confirmar</button>
-          </form>
+
         </div>
         <hr>
         <div class="mt-4 mb-4">
@@ -154,14 +118,14 @@
               <li class="list-group-item">
                 <div class="d-flex justify-content-between">
                   <h4>Subtotal</h4>
-                  <h4 id="subtotal">USD 0</h4>
+                  <h4 id="subtotalFinal">USD 0</h4>
                 </div>
                 <p>Costo unitario del producto por unidad</p>
               </li>
               <li class="list-group-item">
                 <div class="d-flex justify-content-between">
                   <h4>Costo de envío</h4>
-                  <h4 id="costoEnvio">USD 0</h4>
+                  <h4 id="costoEnvio">Falta elegir</h4>
                 </div>
                 <p>Según tipo de envío</p>
               </li>
@@ -179,14 +143,22 @@
         <div class="mt-4 mb-4">
           <h3>Forma de pago</h3>
           <div>
-            <h5 id="formaPago">No ha seleccionado. Seleccionar !!!!!!!!!!!!!!!!! MODAL</h5>
+            <h5 id="formaPago">No ha seleccionado.</h5>
+            <div class="col-sm-12">
+              <input type="checkbox" class="btn-check form-control" id="check-tipo-pago" required>
+              <!-- Check "oculto" para verificar los términos -->
+              <label for="check-tipo-pago"><button type="button" class="btn btn-link ps-0" data-bs-toggle="modal"
+                  data-bs-target="#modalPago" id="btn-tipo-pago">Seleccionar</button></label>
+              <div class="invalid-feedback">Debe seleccionar un tipo de pago.</div>
+            </div>
           </div>
         </div>
         <div class="mt-4 mb-4">
-          <div class="d-grid gap-2"> <!-- Debería estirar el botón, pero no lo hace -->
+          <div class="d-grid gap-2">
             <button class="btn btn-primary" type="submit">Finalizar compra (INHABILITAR SIN TIPO DE ENVÍO)</button>
           </div>
         </div>
+        </form>
       </div>
     </div>
   </main>
@@ -208,6 +180,43 @@
       <div></div>
     </div>
   </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="modalPago" tabindex="-1" aria-labelledby="modalPagoLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalPagoLabel">Forma de pago</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input type="radio" id="pagoTarj" name="forma-de-pago" value="credito" required>
+          <label for="pagoTarj">Tarjeta de crédito</label>
+          <hr>
+          <div>
+            <p>Número de tarjeta</p>
+            <input type="text" id="numTarj" class="input-tarj" required></input>
+            <p>Código de seg.</p>
+            <input type="text" id="codSeg" class="input-tarj" required></input>
+            <p>Vencimiento (MM/AA)</p>
+            <input type="text" id="vencTarj" class="input-tarj" required></input>
+          </div>
+
+          <input type="radio" id="pagoBanco" name="forma-de-pago" value="banco" required>
+          <label for="pagoBanco">Transferencia bancaria</label>
+          <hr>
+          <div>
+            <p>Número de cuenta</p>
+            <input type="text" id="numCuenta" class="input-banco" required></input>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/cart.js"></script>
