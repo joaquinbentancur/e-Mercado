@@ -248,9 +248,11 @@ a.custom-card:hover {
 }
 
 .input-tarj{
-
 }
 
-.input-banco{
-  
+.input-banco{ 
+}
+
+.alert-front{
+  z-index: 1;
 }

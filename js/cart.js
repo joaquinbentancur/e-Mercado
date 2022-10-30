@@ -1,5 +1,8 @@
 let carritoLS = [];
 let tipoEnvio = 0;
+let formCompra = document.getElementById("form-compra");
+let formModal = document.getElementById("form-modal");
+let checkPago = document.getElementById("check-tipo-pago"); /* Check oculto */
 
 document.addEventListener("DOMContentLoaded", function () {
   userDropbarMenu();
@@ -11,17 +14,27 @@ document.addEventListener("DOMContentLoaded", function () {
     getJSONData(userCart).then((resultado) => {
       if (resultado.status === "ok") {
         carritoLS = resultado.data.articles; */
-
   if (JSON.parse(window.localStorage.getItem("carritoLS")) != null) {
     carritoLS = JSON.parse(window.localStorage.getItem("carritoLS"));
-    showCart(carritoLS);
   }
+
+  showCart(carritoLS);
 })
 
 function showCart(carritoLS) {
   let listadoCarrito = document.getElementById("listadoCarrito");
   let plantillaArticulo = "";
   let subtotalFinal = 0;
+
+  if (carritoLS.length === 0 || window.localStorage.getItem("carritoLS") === null) {
+    document.getElementById("listadoCarrito").innerHTML = '<p class="text-center">¡Tu carrito no tiene artículos!</p>';
+    document.getElementById("datos-de-compra").classList.add("d-none");
+    return
+  }
+
+  document.getElementById("datos-de-compra").classList.remove("d-none");
+
+  /* SI VACIO SI CON ALGO PA QUE FUNCIONE AL BORRAR */
 
   for (let i = 0; i < carritoLS.length; i++) {
     let prodCarrito = carritoLS[i];
@@ -44,6 +57,9 @@ function showCart(carritoLS) {
         <div class="col d-flex fw-bold">
           <p class="me-1">${prodCarrito.currency}</p>
           <p>${((prodCarrito.unitCost) * (prodCarrito.count))}</p>
+        </div>
+        <div class="col">
+        <button onclick="deleteProd(${i})" type="button" class="btn btn-outline-danger"><i class="bi bi-trash-fill"></i></button>
         </div>
       </div>`
 
@@ -80,8 +96,20 @@ document.getElementById("pagoTarj").onclick = (element) => { /* Para usar el inp
     for (let input of inputBanco) {
       input.setAttribute("disabled", "");
     }
+    document.getElementById("formaPago").innerHTML = "Tarjeta de crédito";
   }
 }
+
+formCompra.addEventListener("submit", function (e) {
+  e.preventDefault()
+  formCompra.classList.add("was-validated");
+
+  checkModal();
+
+  if (formCompra.checkValidity() && formModal.checkValidity()) { /* Incluyo lo de showCart() */
+    document.getElementById("success-alert").classList.remove("d-none");
+  }
+})
 
 document.getElementById("pagoBanco").onclick = (element) => { /* Para usar el input radio seleccionado */
   let inputTarj = Array.from(document.querySelectorAll(".input-tarj"));
@@ -93,21 +121,23 @@ document.getElementById("pagoBanco").onclick = (element) => { /* Para usar el in
     for (let input of inputTarj) {
       input.setAttribute("disabled", "");
     }
+    document.getElementById("formaPago").innerHTML = "Transferencia bancaria";
   }
 }
 
-/* document.getElementById("pagoTarj").addEventListener("click", function () {
-  document.querySelectorAll("input-tarj").removeAttribute("disabled", "");
-  document.querySelectorAll("input-banco").setAttribute("disabled", "");
-})
+function deleteProd(iBorrar) {
+  console.log(carritoLS);
+  carritoLS = carritoLS.slice(0, iBorrar).concat(carritoLS.slice(iBorrar + 1, carritoLS.length));
+  console.log(carritoLS);
+  window.localStorage.setItem("carritoLS", JSON.stringify(carritoLS));
+  console.log(carritoLS);
+  showCart(carritoLS);
+}
 
-document.getElementById("pagoBanco").addEventListener("click", function () {
-  document.querySelectorAll("input-banco").removeAttribute("disabled", "");
-  document.querySelectorAll("input-tarj").setAttribute("disabled", "");
-}) */
-
-function disableRadio() {
-
+function checkModal() {
+  if (formModal.checkValidity()) {
+    checkPago.checked = true;
+  } else { !formModal.checkValidity() }
 }
 
 function redirectProd(id) {
@@ -115,8 +145,8 @@ function redirectProd(id) {
   location.href = "product-info.html";
 }
 
-function changeCount(prodId, prodPosition) {
-  let inputQ = document.getElementById(prodId).value
+function changeCount(prodID, prodPosition) {
+  let inputQ = document.getElementById(prodID).value
   if (inputQ >= 1) { /* Mínimo de 1 */
     carritoLS[prodPosition].count = Number(inputQ);
   } else { /* O pasa a 1 */
