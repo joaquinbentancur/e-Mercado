@@ -165,7 +165,7 @@
             </div>
             <div class="mt-4 mb-4">
               <div class="d-grid gap-2">
-                <button class="btn btn-primary" type="submit">Finalizar compra (INHABILITAR SIN TIPO DE ENVÍO)</button>
+                <button class="btn btn-primary" type="submit">Finalizar compra</button>
               </div>
             </div>
         </form>
@@ -202,29 +202,30 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <div>
+            <div class="m-3">
               <input type="radio" id="pagoTarj" name="forma-de-pago" value="credito" required>
               <label for="pagoTarj">Tarjeta de crédito</label>
               <hr>
-              <div>
-                <p>Número de tarjeta</p>
-                <input type="text" id="numTarj" class="input-tarj" required></input>
+              <div class="items-modal">
+                <p class="mt-2">Número de tarjeta</p>
+                <input type="text" id="numTarj" class="input-tarj form-control" required></input>
                 <div class="invalid-feedback">Ingresa un número de tarjeta</div>
-                <p>Código de seg.</p>
-                <input type="text" id="codSeg" class="input-tarj" required></input>
+                <p class="mt-2">Código de seg.</p>
+                <input type="text" id="codSeg" class="input-tarj form-control" required></input>
                 <div class="invalid-feedback">Ingresa el código de seguridad</div>
-                <p>Vencimiento (MM/AA)</p>
-                <input type="text" id="vencTarj" class="input-tarj" required></input>
+                <p class="mt-2">Vencimiento (MM/AA)</p>
+                <input type="text" id="vencTarj" class="input-tarj form-control" required></input>
                 <div class="invalid-feedback">Ingresa el vencimiento</div>
               </div>
             </div>
-            <div class="mt-4">
+            <div class="m-3 mt-4">
               <input type="radio" id="pagoBanco" name="forma-de-pago" value="banco" required>
               <label for="pagoBanco">Transferencia bancaria</label>
               <hr>
-              <div>
-                <p>Número de cuenta</p>
-                <input type="text" id="numCuenta" class="input-banco" required></input>
+              <div class="items-modal">
+                <p class="mt-2">Número de cuenta</p>
+                <input type="text" id="numCuenta" class="input-banco form-control" required></input>
+
               </div>
             </div>
           </div>

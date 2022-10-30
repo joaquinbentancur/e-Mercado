@@ -40,7 +40,7 @@ function showCart(carritoLS) {
     let prodCarrito = carritoLS[i];
 
     plantillaArticulo += /* Clickear la imagen redirige al producto */
-      `<div class="row mb-2 border">
+      `<div class="row mb-2 border align-items-center">
         <div class="col">
           <img onclick="redirectProd(${prodCarrito.id})" src="${prodCarrito.image}" style="height: 50px;" class="pointer">
           </img>
@@ -64,7 +64,7 @@ function showCart(carritoLS) {
       </div>`
 
     if (prodCarrito.currency != "USD") {
-      subtotalFinal += Math.round(((prodCarrito.unitCost) * (prodCarrito.count)) / 45); /* Fijo 41 como cambio a USD */
+      subtotalFinal += Math.round(((prodCarrito.unitCost) * (prodCarrito.count)) / 41); /* Fijo 41 como cambio a USD */
     } else {
       subtotalFinal += Math.round((prodCarrito.unitCost) * (prodCarrito.count))
     }
@@ -81,9 +81,31 @@ function showCart(carritoLS) {
 document.getElementById("tipo-de-envio").onclick = (element) => { /* Para usar el input radio seleccionado */
   if (element.target.value) {
     tipoEnvio = element.target.value;
-    console.log(tipoEnvio);
     showCart(carritoLS);
   }
+}
+
+formCompra.addEventListener("submit", function (e) {
+  e.preventDefault()
+  formCompra.classList.add("was-validated");
+
+  checkModal();
+
+  if (formCompra.checkValidity() && formModal.checkValidity()) { /* Incluyo lo de showCart() */
+    document.getElementById("success-alert").classList.remove("d-none");
+  }
+})
+
+function checkModal() {
+  if (formModal.checkValidity()) {
+    checkPago.checked = true;
+  }
+}
+
+function deleteProd(iBorrar) {
+  carritoLS = carritoLS.slice(0, iBorrar).concat(carritoLS.slice(iBorrar + 1, carritoLS.length));
+  window.localStorage.setItem("carritoLS", JSON.stringify(carritoLS));
+  showCart(carritoLS);
 }
 
 document.getElementById("pagoTarj").onclick = (element) => { /* Para usar el input radio seleccionado */
@@ -100,17 +122,6 @@ document.getElementById("pagoTarj").onclick = (element) => { /* Para usar el inp
   }
 }
 
-formCompra.addEventListener("submit", function (e) {
-  e.preventDefault()
-  formCompra.classList.add("was-validated");
-
-  checkModal();
-
-  if (formCompra.checkValidity() && formModal.checkValidity()) { /* Incluyo lo de showCart() */
-    document.getElementById("success-alert").classList.remove("d-none");
-  }
-})
-
 document.getElementById("pagoBanco").onclick = (element) => { /* Para usar el input radio seleccionado */
   let inputTarj = Array.from(document.querySelectorAll(".input-tarj"));
   let inputBanco = Array.from(document.querySelectorAll(".input-banco"));
@@ -123,21 +134,6 @@ document.getElementById("pagoBanco").onclick = (element) => { /* Para usar el in
     }
     document.getElementById("formaPago").innerHTML = "Transferencia bancaria";
   }
-}
-
-function deleteProd(iBorrar) {
-  console.log(carritoLS);
-  carritoLS = carritoLS.slice(0, iBorrar).concat(carritoLS.slice(iBorrar + 1, carritoLS.length));
-  console.log(carritoLS);
-  window.localStorage.setItem("carritoLS", JSON.stringify(carritoLS));
-  console.log(carritoLS);
-  showCart(carritoLS);
-}
-
-function checkModal() {
-  if (formModal.checkValidity()) {
-    checkPago.checked = true;
-  } else { !formModal.checkValidity() }
 }
 
 function redirectProd(id) {

@@ -256,3 +256,7 @@ a.custom-card:hover {
 .alert-front{
   z-index: 1;
 }
+
+.items-modal p{
+  margin-bottom: 0;
+}
