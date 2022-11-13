@@ -40,12 +40,17 @@ let getJSONData = function (url) {
     });
 };
 
-function userDropbarMenu(){ /* Defino función que muestra menú desplegable desde el usuario */
-  document.getElementById("usuario-ingresado").innerHTML = `
-  ${window.localStorage.getItem("usuario-ingresado")}
-  `;
+function userDropbarMenu() { /* Defino función que muestra menú desplegable desde el usuario */
+  if (!window.localStorage.getItem("usuario-ingresado")) {
+    document.getElementById("usuario-ingresado").innerHTML = "Usuario"
+    document.getElementById("log-out").innerHTML = "Iniciar sesión"
+  } else {
+    document.getElementById("usuario-ingresado").innerHTML = `
+${window.localStorage.getItem("usuario-ingresado")}
+`;
 
-  document.getElementById("log-out").addEventListener("click", function () {
+    document.getElementById("log-out").addEventListener("click", function () {
       localStorage.removeItem("usuario-ingresado")
-  });
+    });
+  }
 }

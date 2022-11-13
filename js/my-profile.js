@@ -2,8 +2,7 @@ let infoUsuario = [];
 
 document.addEventListener("DOMContentLoaded", function () {
     userDropbarMenu();
-    /* Si tengo tiempo, crear una función que verifique lo siguiente y de dónde luego
-    obtener otra información, como la de la verificación del usuario ingresado */
+    /* Verifico si la sesión está iniciada */
     if (window.localStorage.getItem("usuario-ingresado") === null) {
         location.href = "index.html"
     }
@@ -26,16 +25,6 @@ document.addEventListener("DOMContentLoaded", function () {
         window.localStorage.setItem("infoUsuario", JSON.stringify(infoUsuario));
     }
 
-    /* Recorrer un array pa actualizar con innerHTML la inf de los HTML */
-    let inputsUsuario = [
-        "nombre1",
-        "nombre2",
-        "apellido1",
-        "apellido2",
-        "correo",
-        "telefono"
-    ]
-
     let chgProfImg = document.getElementById("chgProfImg");
     let profImg = document.getElementById("profImg");
     let profImgUrl = "";
@@ -51,10 +40,18 @@ document.addEventListener("DOMContentLoaded", function () {
         fileRead.addEventListener("load", () => {
             profImgUrl = fileRead.result;
             profImg.src = profImgUrl;
-            console.log(profImgUrl);
-            console.log(profImg);
         })
     })
+
+    /* Recorrer un array pa actualizar con innerHTML la inf de los HTML */
+    let inputsUsuario = [
+        "nombre1",
+        "nombre2",
+        "apellido1",
+        "apellido2",
+        "correo",
+        "telefono"
+    ]
 
     for (let i = 0; i < inputsUsuario.length; i++) {
         let itemHTML = inputsUsuario[i];
@@ -72,7 +69,6 @@ document.addEventListener("DOMContentLoaded", function () {
             infoUsuario[0].correo = document.getElementById("correo").value;
             infoUsuario[0].telefono = document.getElementById("telefono").value;
             infoUsuario[0].imagen = profImgUrl;
-            console.log(infoUsuario);
 
             window.localStorage.setItem("infoUsuario", JSON.stringify(infoUsuario));
 
@@ -86,17 +82,11 @@ document.addEventListener("DOMContentLoaded", function () {
 function checkInputs() {
     if (document.getElementById("nombre1").value == "") {
         document.getElementById("nombre1").classList.add("is-invalid")
-    } else {
-        if (document.getElementById("nombre1").classList.remove("is-invalid"));
-    }
+    } else {if (document.getElementById("nombre1").classList.remove("is-invalid"));}
     if (document.getElementById("apellido1").value == "") {
         document.getElementById("apellido1").classList.add("is-invalid")
-    } else {
-        if (document.getElementById("apellido1").classList.remove("is-invalid"));
-    }
+    } else {if (document.getElementById("apellido1").classList.remove("is-invalid"));}
     if (document.getElementById("correo").value == "") {
         document.getElementById("correo").classList.add("is-invalid")
-    } else {
-        if (document.getElementById("correo").classList.remove("is-invalid"));
-    }
+    } else {if (document.getElementById("correo").classList.remove("is-invalid"));}
 }
