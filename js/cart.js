@@ -6,6 +6,10 @@ let checkPago = document.getElementById("check-tipo-pago"); /* Check oculto */
 
 document.addEventListener("DOMContentLoaded", function () {
   userDropbarMenu();
+  if (window.localStorage.getItem("usuario-ingresado") === null) {
+    location.href = "index.html"
+}
+
   /* Para simplificar el desafío de la entrega 5, prescindí del JSON y
   usé el LocalStorage a modo de servidor donde guardar la información.
   

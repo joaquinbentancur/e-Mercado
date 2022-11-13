@@ -17,19 +17,21 @@ document.addEventListener("DOMContentLoaded", function () {
             validPassword = true
         } else { document.getElementById("password-error").innerHTML = "Ingresa tu contraseña" }
         if (validEmail == true && validPassword == true) {
+            if (window.localStorage.getItem("carritoLS") === null) {
+                /* Imitación del JSON del carrito del usuario 25801 con el producto precargado */
+                let carritoLS = [
+                    {
+                        id: 50924,
+                        name: "Peugeot 208",
+                        count: 1,
+                        unitCost: 15200,
+                        currency: "USD",
+                        image: "img/prod50924_1.jpg"
+                    }
+                ];
+                window.localStorage.setItem("carritoLS", JSON.stringify(carritoLS));
+            }
             window.location.href = "portada.html";
-            
-            let carritoLS = [ /* Imitación del JSON del carrito del usuario con el producto precargado */
-                {
-                    id: 50924,
-                    name: "Peugeot 208",
-                    count: 1,
-                    unitCost: 15200,
-                    currency: "USD",
-                    image: "img/prod50924_1.jpg"
-                }
-            ];
-            window.localStorage.setItem("carritoLS", JSON.stringify(carritoLS));
         }
     })
 })

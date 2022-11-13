@@ -3,7 +3,8 @@
 .container,
 .site-header {
   font-family: 'Raleway', serif !important;
-  font-size: 20px; /* Cambié el tamaño de todas las fuentes */
+  font-size: 20px;
+  /* Cambié el tamaño de todas las fuentes */
 }
 
 .jumbotron .display-4 {
@@ -196,67 +197,81 @@ a.custom-card:hover {
   margin-bottom: 40px;
 }
 
+.titulo {
+  margin-top: 20px;
+}
+
 .subtitulo-producto {
   font-weight: 700;
   margin: 0;
 }
 
 .div-imagenes-horizontal {
-  display: flex; /* Las pone horizontales */
-  flex-wrap: wrap; /* Evita que el tamaño grande agregue una barra de desplazamiento */
+  display: flex;
+  /* Las pone horizontales */
+  flex-wrap: wrap;
+  /* Evita que el tamaño grande agregue una barra de desplazamiento */
 }
 
 .imagen-producto {
   height: 250px;
   border: solid;
-  border-color:rgb(139, 139, 139);
+  border-color: rgb(139, 139, 139);
   border-width: 2px;
   border-radius: 3px;
-  margin: 10px 20px 10px 0px; /* Valores en sentido horario */
+  margin: 10px 20px 10px 0px;
+  /* Valores en sentido horario */
 }
 
 #comment-user {
   font-weight: 700;
 }
 
-.comment-container{
+.comment-container {
   border: solid;
-  border-color:rgba(139, 139, 139, 0.664);
+  border-color: rgba(139, 139, 139, 0.664);
   border-width: 2px;
   border-radius: 3px;
   padding: 15px;
 }
 
-.cart-qty-input{
+.cart-qty-input {
   width: 75px;
   border-radius: 4px;
   border-color: #b3b3b3;
 }
 
-.cart-adress-input{
-  max-width: 100%;
+.medium-input {
+  max-width: 150%;
   border-radius: 4px;
   border-color: #b3b3b3;
 }
 
-.btn-cart{
+.btn-cart {
   text-align: right;
 }
 
-.pointer{
+.pointer {
   cursor: pointer;
 }
 
-.input-tarj{
-}
+.input-tarj {}
 
-.input-banco{ 
-}
+.input-banco {}
 
-.alert-front{
+.alert-front {
   z-index: 1;
 }
 
-.items-modal p{
+.items-modal p {
   margin-bottom: 0;
+}
+
+.input-user {
+  width: calc(50% - 20px);
+  margin: 0 20px 20px 0;
+}
+
+.form{
+  max-width: 50%;
 }
