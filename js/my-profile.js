@@ -19,7 +19,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 apellido1: "",
                 apellido2: "",
                 correo: window.localStorage.getItem("usuario-ingresado"),
-                telefono: ""
+                telefono: "",
+                imagen: "img/img_perfil.png"
             }
         ];
         window.localStorage.setItem("infoUsuario", JSON.stringify(infoUsuario));
@@ -34,6 +35,26 @@ document.addEventListener("DOMContentLoaded", function () {
         "correo",
         "telefono"
     ]
+
+    let chgProfImg = document.getElementById("chgProfImg");
+    let profImg = document.getElementById("profImg");
+    let profImgUrl = "";
+
+    /* Cargo la imagen del LS */
+    profImg.src = infoUsuario[0].imagen;
+
+    chgProfImg.addEventListener("change", function () {
+        const fileRead = new FileReader();
+
+        fileRead.readAsDataURL(chgProfImg.files[0]);
+
+        fileRead.addEventListener("load", () => {
+            profImgUrl = fileRead.result;
+            profImg.src = profImgUrl;
+            console.log(profImgUrl);
+            console.log(profImg);
+        })
+    })
 
     for (let i = 0; i < inputsUsuario.length; i++) {
         let itemHTML = inputsUsuario[i];
@@ -50,6 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
             infoUsuario[0].apellido2 = document.getElementById("apellido2").value;
             infoUsuario[0].correo = document.getElementById("correo").value;
             infoUsuario[0].telefono = document.getElementById("telefono").value;
+            infoUsuario[0].imagen = profImgUrl;
             console.log(infoUsuario);
 
             window.localStorage.setItem("infoUsuario", JSON.stringify(infoUsuario));

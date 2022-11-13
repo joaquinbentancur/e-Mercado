@@ -69,7 +69,10 @@
     <div class="container form">
       <div>
         <form id="form-perfil" class="needs-validation" novalidate>
-          <h2 class="titulo mb-5">Perfil</h2>
+          <div class="d-flex align-items-center justify-content-between mt-4">
+            <h2 class="titulo mb-5">Perfil</h2>
+            <img id="profImg" src="img/img_perfil.png" class="prof-img">
+          </div>
           <hr>
           <div class="d-flex flex-wrap">
             <div class="input-user">
@@ -94,6 +97,10 @@
               <p class="mb-0 mt-2">E-mail*</p>
               <input id="correo" class="medium-input" type="email" required></input>
               <div class="invalid-feedback">Ingresa tu e-mail</div>
+            </div>
+            <div class="input-user">
+              <p class="mb-0 mt-2">Imagen de perfil</p>
+              <input id="chgProfImg" type="file" accept=".jpg, .jpeg, .png"></input>
             </div>
             <div class="input-user">
               <p class="mb-0 mt-2">Teléfono de contacto</p>
