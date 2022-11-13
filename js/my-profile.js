@@ -5,10 +5,11 @@ document.addEventListener("DOMContentLoaded", function () {
     /* Verifico si la sesión está iniciada */
     if (window.localStorage.getItem("usuario-ingresado") === null) {
         location.href = "index.html"
+        return
     }
 
     /* Agrego verificación para la inf. de usuario*/
-    if (JSON.parse(window.localStorage.getItem("infoUsuario")) != null) {
+    if (window.localStorage.getItem("infoUsuario") != null) {
         infoUsuario = JSON.parse(window.localStorage.getItem("infoUsuario"));
     } else {
         infoUsuario = [
@@ -27,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let chgProfImg = document.getElementById("chgProfImg");
     let profImg = document.getElementById("profImg");
-    let profImgUrl = "";
+    let profImgUrl = infoUsuario[0].imagen;
 
     /* Cargo la imagen del LS */
     profImg.src = infoUsuario[0].imagen;
